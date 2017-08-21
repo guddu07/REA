@@ -6,11 +6,13 @@
       state: directory
     become: false
 
+  # Verify if packer is already there
   - name: Check the stat of packer
     stat: 
       path: /usr/local/bin/packer
     register: packer_stat
 
+  # Download the Packer ZIP and unarchive at logged in user's home directory
   - name: Download packer and unarchive 
     unarchive:
       src: https://releases.hashicorp.com/packer/0.12.0/packer_0.12.0_linux_amd64.zip
@@ -19,6 +21,7 @@
     become: false
     when: packer_stat.stat.exists==false
 
+  # Moving Packer binary to executable path  
   - name: Moving packer binaries to /usr/local directory
     command: mv "{{ lookup('env', 'HOME') }}/packer/packer" /usr/local/bin/
     when: packer_stat.stat.exists==false

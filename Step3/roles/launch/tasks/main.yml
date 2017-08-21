@@ -1,5 +1,6 @@
 ---
 # tasks file for roles/launch
+      # Launching Sinatra web application server ready to serve the traffic
       - name: Launch the new EC2 Instance
         ec2: 
           group: "{{ security_group }}"

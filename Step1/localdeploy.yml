@@ -4,6 +4,7 @@
   gather_facts: false
   become: true
   user: devops
+  # Roles to install and configure the local workstation
   roles:
     - packer
     - ec2-dynamic-inventory
@@ -12,6 +13,7 @@
 - name: Create EC2 keypair from user's personal public key
   hosts: localhost
   connection: local
+  # Role to create a EC2 keypair 
   roles:
     - ec2-keypair  
 ...

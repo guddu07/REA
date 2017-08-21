@@ -6,12 +6,13 @@
   become: true
   user: ubuntu
   vars: 
-    app_path: /home/ubuntu/sinatra-app
+    app_path: /home/ubuntu/sinatra-app    # Make sure to modify this path to desired application path
   tasks:
-  # Tasks to update the system and install dependencies
+  # Tasks to update the system and install dependencies and caching for 1 hour
   - name: update system to latest state
     package: update_cache=true cache_valid_time=3600
     
+  # Install base software development tools required for application to run smoothly  
   - name: Install dependencies
     apt:
       name: "{{ item }}"
@@ -38,21 +39,23 @@
       - pkg-config
       - bundler
 
-  # Tasks to install Ruby and required gems
+  # Adding Ruby repository 
   - name: Add Brightbox PPA
     apt_repository: repo=ppa:brightbox/ruby-ng-experimental state=present
                  
+  # Install Ruby 2.2 required for application              
   - name: Install Ruby
     apt: name={{ item }} state=present
     with_items:
      - ruby2.2
      
+  # Install Sinatra gem for application   
   - name: Install some useful ruby gems
     gem: name={{ item }} state=present
     with_items:
       - sinatra 
 
-  # Tasks to download the app and run bundle
+  # Download the app and run bundle
   - name: downloading git repo
     git:
      repo: "https://github.com/rea-cruitment/simple-sinatra-app.git"
@@ -67,17 +70,20 @@
      chdir: "{{ app_path }}"
     become: false
 
+  # Install nginx web server
   - name: install nginx
     package: 
      name: nginx
      state: present
  
+  # Starting the nginx service
   - name: start nginx
     service:
      name: nginx
      enabled: true
      state: started
-
+  
+  # Adding proxy rules in nginx configuration file to allow traffic from 9292 to port 80
   - name: modify nginx config
     blockinfile: 
       path: "/etc/nginx/sites-available/default"

@@ -1,11 +1,13 @@
 ---
 # tasks file for roles/ec2-dynamic-inventory
+  # Download the AWS provided python script to let dynamic inventory to run
   - name: Download EC2 dynamic inventory
     get_url: 
       url: https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py
       dest: "{{ ANS_PATH }}/ec2.py"
       mode: 0755
 
+  # Download the AWS provided settings file required for above python script 
   - name: Download EC2 dynamic inventory settings file
     get_url: 
       url: https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini

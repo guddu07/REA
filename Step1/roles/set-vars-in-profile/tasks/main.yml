@@ -1,5 +1,7 @@
 ---
 # tasks file for roles/set-vars-in-profile
+
+  # Adding the Environment variable to use AWS provided dynamic inventory as default inventory file for Ansible in profile file which will be revoked while login
   - name: Setting up the environment variable for hosts file required for dynamic inventory
     lineinfile:
       dest: "{{ lookup('env', 'HOME') }}/.bashrc"
@@ -8,6 +10,7 @@
       insertafter: EOF
     become: false
  
+  # Adding the Environment variable to use settings file required for above AWS provided dynamic inventory
   - name: Setting up the environment variable required for settings file for dynamic inventory
     lineinfile:
       dest: "{{ lookup('env', 'HOME') }}/.bashrc"
@@ -16,6 +19,7 @@
       insertafter: EOF
     become: false
 
+  # Make sure host key check is set to false
   - name: Setting up the environment variable required for settings file for dynamic inventory
     lineinfile:
       dest: "{{ lookup('env', 'HOME') }}/.bashrc"

@@ -1,5 +1,7 @@
 ---
 # tasks file for roles/security_group
+      
+      # Creating security group allowing traffic only on port 80
       - name: Create a security group for Sinatra Web Server
         ec2_group:
           name: "{{ security_group }}"

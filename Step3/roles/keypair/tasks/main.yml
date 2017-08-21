@@ -6,7 +6,8 @@
           generate_ssh_key: true 
           ssh_key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
         no_log: true
-
+      
+      # Creating EC2 keypair using local public key from workstation  
       - name: Creating EC2 keypair from your local public key
         ec2_key:
           name: "{{ keyname }}"
