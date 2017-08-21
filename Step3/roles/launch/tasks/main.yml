@@ -1,0 +1,20 @@
+---
+# tasks file for roles/launch
+      - name: Launch the new EC2 Instance
+        ec2: 
+          group: "{{ security_group }}"
+          instance_type: "{{ instance_type}}"
+          image: "{{ image }}"
+          wait: true 
+          region: "{{ region }}"
+          keypair: "{{ keyname }}"
+          exact_count: 1
+          count_tag: 
+              Name: "{{ ins_tag_name }}"
+          instance_tags:
+              Name: "{{ ins_tag_name }}"
+          user_data: |
+              #!/bin/bash
+              cd "{{ app_path }}"
+              nohup bundle exec rackup </dev/null >/dev/null 2>&1 &
+              service nginx restart

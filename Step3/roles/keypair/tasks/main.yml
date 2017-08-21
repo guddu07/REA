@@ -1,0 +1,18 @@
+---
+# tasks file for roles/keypair
+      - name: Ensuring local user has generated ssh keys
+        user:
+          name: "{{ lookup('env', 'USER')}}"
+          generate_ssh_key: true 
+          ssh_key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+        no_log: true
+
+      - name: Creating EC2 keypair from your local public key
+        ec2_key:
+          name: "{{ keyname }}"
+          state: present
+          region: "{{ region }}"
+          key_material: "{{ item }}"
+        with_file: 
+           - "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+        no_log: true

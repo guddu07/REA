@@ -1,0 +1,8 @@
+---
+region: us-west-2 #Region need to change but make sure shoudl be same as Image id's region
+instance_type: t2.micro # Instance you wish to create
+image: ami-d46e81ac # This is Image id which you had got while building in Step 2
+security_group: sinatra-webserver-sg  # Change the desired security group name here
+keyname: sinatra  #Change the desired keypair name here
+ins_tag_name: Sinatrawebserver  # Change the desired instance tag name without spaces or special characters
+app_path: /home/ubuntu/sinatra-app

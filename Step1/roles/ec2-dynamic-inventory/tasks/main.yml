@@ -1,0 +1,13 @@
+---
+# tasks file for roles/ec2-dynamic-inventory
+  - name: Download EC2 dynamic inventory
+    get_url: 
+      url: https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py
+      dest: "{{ ANS_PATH }}/ec2.py"
+      mode: 0755
+
+  - name: Download EC2 dynamic inventory settings file
+    get_url: 
+      url: https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini
+      dest: "{{ ANS_PATH }}/ec2.ini"
+      mode: 0755

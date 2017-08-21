@@ -1,0 +1,2 @@
+---
+include_vars: "../../../../Step1/group_vars/all.yml"

@@ -1,0 +1,11 @@
+---
+- name: Provision an EC2 Instance for Sinatra Web Server
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  # Roles that will be used to Launch/Create an EC2 Instance and associated resources
+  roles:
+    - security_group
+    - keypair
+    - launch 
+...

@@ -1,0 +1,3 @@
+---
+ANS_PATH: /etc/ansible/  # Default ansible path
+region: us-west-2  # Region where base image is being created

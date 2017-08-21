@@ -1,0 +1,25 @@
+---
+# tasks file for roles/set-vars-in-profile
+  - name: Setting up the environment variable for hosts file required for dynamic inventory
+    lineinfile:
+      dest: "{{ lookup('env', 'HOME') }}/.bashrc"
+      line: "export ANSIBLE_HOSTS=/etc/ansible/ec2.py"
+      state: present
+      insertafter: EOF
+    become: false
+ 
+  - name: Setting up the environment variable required for settings file for dynamic inventory
+    lineinfile:
+      dest: "{{ lookup('env', 'HOME') }}/.bashrc"
+      line: "export EC2_INI_PATH=/etc/ansible/ec2.ini"
+      state: present
+      insertafter: EOF
+    become: false
+
+  - name: Setting up the environment variable required for settings file for dynamic inventory
+    lineinfile:
+      dest: "{{ lookup('env', 'HOME') }}/.bashrc"
+      line: "export ANSIBLE_HOST_KEY_CHECKING=False"
+      state: present
+      insertafter: EOF
+    become: false

@@ -1,0 +1,17 @@
+---
+- name: Setup local workstation to make it ready for deploying the Sinatra application
+  hosts: localhost
+  gather_facts: false
+  become: true
+  user: devops
+  roles:
+    - packer
+    - ec2-dynamic-inventory
+    - set-vars-in-profile  
+
+- name: Create EC2 keypair from user's personal public key
+  hosts: localhost
+  connection: local
+  roles:
+    - ec2-keypair  
+...
