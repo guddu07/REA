@@ -9,6 +9,7 @@ This codebase is divided into 3 directories as mentioned below and their usage
 
 ### Need to have before starting further
 1. Before starting further I would request to sign up for a new AWS account and download ACCESS Key ID and SECRET ACCESS Key from AWS console -> My Security Credentials -> ACCESS Keys. Make sure you download this as you will not get to see this again if you have missed to note down or download the credentials.
+##### Your AWS account should have either root access or full access to at least Amazon EC2, RDS and Elastic Cache services.
 2. Generate ssh keys from your Ubuntu system using below command 
 ```sh
 $ ssh-keygen
