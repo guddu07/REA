@@ -62,6 +62,14 @@ Move to Step1 directory and make bash script executable
 ```sh
 $ cd Step1
 $ sudo chmod 755 setup.sh
+```
+##### Make sure to replace the devops user by the logged in username in your workstation in localdeploy.yml file before executing the bash script
+```sh
+$ nano localdeploy.yml
+$ user: devops 
+```
+Now run the bash script as mentioned below.
+```sh
 $ ./setup.sh
 ```
 Hit enter when prompted. Above script will install basic dependencies, install ansible and run a playbook which installs packer, download EC2 dynamic inventory files, etc., to configure your workstation ready to fly. 
